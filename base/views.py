@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from base.models import Paragraph,Word
+from base.models import Paragraph, Word
 
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view,permission_classes
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
@@ -13,28 +13,37 @@ def index(request):
     return HttpResponse("Hello, world. You're at the base index.")
 
 
-
 @permission_classes([IsAuthenticated])
-@api_view(['POST'])
+@api_view(["POST"])
 def create_paras(request):
-    paras = request.data['para']
-    paras_list = paras.split('\n\n')
+    paras = request.data["para"]  # get the paragraph from the request
+    paras_list = paras.split("\n\n")  # split the paragraph into list of paragraphs
 
+    # create paragraph and word objects
     for para in paras_list:
-        p = Paragraph.objects.create(text=para,owner=request.user)
+        p = Paragraph.objects.create(text=para, owner=request.user)
         words = para.split()
         for word in words:
             word = word.lower()
-            w,create = Word.objects.get_or_create(text=word,para=p)
+            w, create = Word.objects.get_or_create(
+                text=word, para=p
+            )  # get or create word object
 
     return Response(status=status.HTTP_201_CREATED)
 
-@permission_classes([IsAuthenticated])
-@api_view(['GET'])
-def search_para(request,word):
-    word = word.lower()
-    word_paras = Word.objects.filter(text=word).values_list('para', flat=True).distinct()
-    paras = Paragraph.objects.filter(id__in=word_paras)[:10]
-    para_texts = {"Paragraph-"+ str(val+1):para.text for val,para in enumerate(paras)}
-    return Response({"paras":para_texts})
 
+# search for a word in the paragraphs
+@permission_classes([IsAuthenticated])
+@api_view(["GET"])
+def search_para(request, word):
+    word = word.lower()
+    word_paras = (
+        Word.objects.filter(text=word).values_list("para", flat=True).distinct()
+    )  # get the paragraphs containing the word
+    paras = Paragraph.objects.filter(id__in=word_paras)[
+        :10
+    ]  # get the first 10 paragraphs
+    para_texts = {
+        "Paragraph-" + str(val + 1): para.text for val, para in enumerate(paras)
+    }  # create a dictionary of paragraph texts
+    return Response({"paras": para_texts})

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Paragraph, Word,User
+from .models import Paragraph, Word, User
 
 
 class ParagraphSerializer(serializers.ModelSerializer):
@@ -12,4 +12,3 @@ class WordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Word
         fields = ["*"]
-
