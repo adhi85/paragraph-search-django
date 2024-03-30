@@ -16,7 +16,6 @@ schema_view = get_schema_view(
         title="Paragraph search API",
         default_version="v1",
         description="API endpoints to search for a word in paragraphs",
-        terms_of_service="https://www.google.com/policies/terms/",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
@@ -24,6 +23,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("create-user/", views.create_user, name="create_user"),
     path("paras", views.create_paras, name="create_paras"),
     path("search/<str:word>", views.search_para, name="search_para"),
     path(
