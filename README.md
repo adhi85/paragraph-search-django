@@ -1,6 +1,7 @@
 # Paragraph-Search Using Django
 
-## Tech Used: Django, Djangorestframework, PostgreSQL
+- Tech Used: Django, Djangorestframework, PostgreSQL
+- Formatter User: black 24.3.0
 
 ## How to run locally
 ### Using Virtualenv
