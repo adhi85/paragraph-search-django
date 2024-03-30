@@ -74,11 +74,12 @@ BODY:
   "para": "Sample paragraph \n\n This is another paragraph \n\n This contains word MARKABLE."
 }
 ```
-RESPONSE:`None`
+RESPONSE:`None`  
+STATUS CODE: HTTP_201_CREATED)
 
 ### Search Word
 *GET*: "search/\<str:word>\/"
-BODY: `NONE`
+BODY: `NONE`  
 RESPONSE: 
 ```
 {
