@@ -28,15 +28,15 @@
 ## API Endpoints
 ### PREFIX: /api
 ### Token Generate
-*POST*: "token/" 
-BODY: 
+*POST*: "token/"   
+BODY:     
 ```
 {  
   "email": "user@email.com",  
   "password": "user"  
 }  
 ```
-RESPONSE:
+RESPONSE:  
 ```
 {
   "refresh": "<Refresh-token>",
@@ -44,8 +44,8 @@ RESPONSE:
 }
 ```
 ### Create User
-*POST*: "create-user/"
-BODY:
+*POST*: "create-user/"  
+BODY:   
 ```
 {
   "name": "user",
@@ -54,7 +54,7 @@ BODY:
   "dob": "1990-2-2"
 }
 ```
-RESPONSE: 
+RESPONSE:   
 ```
 {
   "id": 1,
@@ -69,26 +69,26 @@ RESPONSE:
 ```
 
 ### Create Paragraph
-*POST*: "paras/"
-BODY:
+*POST*: "paras/"  
+BODY:  
 ```
 {
   "para": "Sample paragraph \n\n This is another paragraph \n\n This contains word MARKABLE."
 }
 ```
 RESPONSE:`None`  
-STATUS CODE: HTTP_201_CREATED)
+STATUS CODE: HTTP_201_CREATED
 
 ### Search Word
-*GET*: "search/\<str:word>\/"
-BODY: `NONE`  
+*GET*: "search/\<str:word>\/"  
+BODY: `NONE`   
 RESPONSE: 
 ```
 {
   "paras": {
-    "Paragraph-1": "<1st Paragraph>",
-    "Paragraph-2": "<2nd Paragraph>",
-    "Paragraph-3": "3rd Paragraph"
+    "Paragraph-1": "<1st-Paragraph containing word>",
+    "Paragraph-2": "<2nd-Paragraph containing word>",
+    "Paragraph-3": "<3rd-Paragraph containing word>"
   }
 }
 ```
