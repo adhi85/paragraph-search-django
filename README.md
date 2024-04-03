@@ -1,7 +1,7 @@
 # Paragraph-Search Using Django
 
 - Tech Used: Django, Djangorestframework, PostgreSQL
-- Formatter User: black 24.3.0
+- Formatter Used: black 24.3.0
 - You can use services like [This](https://railway.app/) to provision free Postgres Databases.
 
 ## How to run locally
